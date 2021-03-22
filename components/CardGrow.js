@@ -108,7 +108,8 @@ const CardGrow = ({ service }) => {
             mode="outlined"
             color={"black"}
             onPress={() => {
-              navigation.replace("Service");
+              console.log("navegando")
+              navigation.navigate("Service");
             }}
           >
             Schedule IT

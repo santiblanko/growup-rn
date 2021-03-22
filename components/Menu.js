@@ -19,7 +19,7 @@ const Menu = ({ service, user }) => {
       <View style={{ flex: 0.2, flexDirection: "row" }}>
         <TouchableOpacity
           onPress={() => {
-            navigation.replace("Avatar");
+            navigation.navigate("Avatar");
           }}
           style={{ flex: 0.4, justifyContent: "center", alignItems: "center" }}
         >
@@ -32,9 +32,9 @@ const Menu = ({ service, user }) => {
             />}
         </TouchableOpacity>
         <View style={{ flex: 0.6, justifyContent: "center" }}>
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }}>
-            Teresa Gonzales
-          </Text>
+          {user && <Text style={{ fontWeight: "bold", fontSize: 16, color: "white" }}>
+            {user.firstName} {user.lastName}
+          </Text>}
           <Text style={{ color: "white" }}>TeresaGonzales42</Text>
           <Text style={{ color: "#5297f0", fontSize: 12, marginTop: 10 }}>
             View Profile
@@ -44,34 +44,70 @@ const Menu = ({ service, user }) => {
       <View
         style={{ flex: 0.05, justifyContent: "center", borderBottomWidth: 1 }}
       >
-        <Text style={{ color: "white", marginLeft: 10 }}>
-          Upgrade to Provider
-        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Upgrade");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10 }}>
+            Upgrade to Provider
+          </Text>
+        </TouchableOpacity>
       </View>
       <View
         style={{ flex: 0.1, justifyContent: "center", borderBottomWidth: 1 }}
       >
-        <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
-          Service
-        </Text>
-        <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
-          Calendar
-        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("ServiceList");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+            Service
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Calendar");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+            Calendar
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View
         style={{ flex: 0.2, justifyContent: "center", borderBottomWidth: 1 }}
       >
-        <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
-          Payments
-        </Text>
-        <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
-          Contact Us
-        </Text>
-        <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
-          Legal
-        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Payments");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+            Payments
+          </Text>
+        </TouchableOpacity>
 
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Contact");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+            Contact Us
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Terms");
+          }}
+        >
+          <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+            Legal
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={async () => {
             navigation.replace("Login");

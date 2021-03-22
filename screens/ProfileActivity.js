@@ -5,6 +5,7 @@ import {
   BackHandler,
   StyleSheet,
   ScrollView,
+  RefreshControl,
   Text,
   View
 } from "react-native";
@@ -27,18 +28,33 @@ class ProfileActivity extends React.Component {
   constructor() {
     super();
     this.state = {
-      services: []
+      services: [],
+      refreshing: false
     };
   }
 
   componentDidMount() {
-    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+    // BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this.getData();
   }
+
 
   async getData() {
     var response = await axios.get(configData.baseURL + "/services");
     this.getCurrentUser();
+    this.setState({
+      services: response.data
+    });
+  }
+
+  onRefresh () {
+    this.getData()
+  }
+
+  async searchServices(terms) {
+    var response = await axios.get(
+      configData.baseURL + "/services?search_contains=" + terms
+    );
     this.setState({
       services: response.data
     });
@@ -81,6 +97,18 @@ class ProfileActivity extends React.Component {
     return true;
   }
 
+  onSearchService(terms) {
+    if (terms) {
+      this.searchServices(terms);
+    } else {
+      this.getData();
+    }
+  }
+
+  onCancelSearchBox() {
+    this.getData();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -98,11 +126,21 @@ class ProfileActivity extends React.Component {
               }}
             />
 
-            <View style={{ flex: 0.06, backgroundColor: "grey" }}>
-              <Search placeholder="search" ref="search_box" />
+            <View style={{ flex: 0.1, backgroundColor: "grey" }}>
+              <Search
+                onCancel={this.onCancelSearchBox.bind(this)}
+                onChangeText={this.onSearchService.bind(this)}
+                placeholder="search"
+                ref="search_box"
+              />
             </View>
 
-            <ScrollView style={{ flex: 0.85, backgroundColor: "grey" }}>
+            <ScrollView
+              refreshControl={
+                <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)} />
+              }
+              style={{ flex: 0.85, backgroundColor: "grey" }}
+            >
               {this.state.services.map(service => {
                 return <CardGrow key={service.id} service={service} />;
               })}

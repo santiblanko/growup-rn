@@ -11,6 +11,12 @@ import ServiceActivity from "./screens/ServiceActivity";
 import RegisterActivity from "./screens/RegisterActivity";
 import AvatarLoadActivity from "./screens/AvatarLoadActivity";
 import TermsActivity from "./screens/TermsActivity";
+import ContactUsActivity from "./screens/ContactUsActivity";
+import PaymentsActivity from "./screens/PaymentsActivity";
+import CalendarActivity from "./screens/CalendarActivity";
+import ServiceListActivity from "./screens/ServiceListActivity";
+import UpgradeActivity from "./screens/UpgradeActivity";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Avatar } from "react-native-paper";
 
@@ -49,15 +55,9 @@ class App extends Component {
               name="Profile"
               component={ProfileActivity}
             />
-            <Stack.Screen
-              name="Register"
-              component={RegisterActivity}
-            />
+            <Stack.Screen name="Register" component={RegisterActivity} />
 
-            <Stack.Screen
-              name="Terms"
-              component={TermsActivity}
-            />
+            <Stack.Screen name="Terms" component={TermsActivity} />
 
             <Stack.Screen
               options={{ headerShown: false }}
@@ -71,6 +71,35 @@ class App extends Component {
               component={AvatarLoadActivity}
             />
 
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Contact"
+              component={ContactUsActivity}
+            />
+
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Payments"
+              component={PaymentsActivity}
+            />
+
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Calendar"
+              component={CalendarActivity}
+            />
+
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="ServiceList"
+              component={ServiceListActivity}
+            />
+
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Upgrade"
+              component={UpgradeActivity}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       );
