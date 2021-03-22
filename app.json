@@ -4,9 +4,18 @@
   "expo": {
     "name": "growup",
     "slug": "growup",
+    "icon": "assets/logo.png",
+    "orientation": "portrait",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "description": "",
+    "android": {
+      "package": "com.santiblanko.growup"
+    },
+    "ios": {
+      "bundleIdentifier": "com.santiblanko.growup"
+    }
   }
 }
