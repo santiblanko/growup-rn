@@ -35,7 +35,7 @@ const Menu = ({ service, user }) => {
           {user && <Text style={{ fontWeight: "bold", fontSize: 16, color: "white" }}>
             {user.firstName} {user.lastName}
           </Text>}
-          <Text style={{ color: "white" }}>TeresaGonzales42</Text>
+          {user && (<Text style={{ color: "white" }}>{user.username}</Text>)}
           <Text style={{ color: "#5297f0", fontSize: 12, marginTop: 10 }}>
             View Profile
           </Text>
